@@ -1,28 +1,35 @@
 import "./App.css";
 import Nav from "./features/nav/Nav";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Home from "./features/Pages/Home";
-import About from "./features/Pages/About";
-import Profile from "./features/Pages/Profile";
-import Link from "./features/Link/Link";
-import NotFound from "./features/Pages/NotFound";
-import Post from "./features/Pages/Post";
+import { PostsList } from "./PostsList.js";
+import { AddPostForm } from "./features/blogPost/AddPostForm";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
+import React from "react";
 
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <Nav />
-      {/* <div className='Links'>
-        <Link />
-      </div> */}
-      <Switch>
-        <Route path="/" component={Home} exact />
-        <Route path="/About" component={About} />
-        <Route path="/Profile" component={Profile} />
-        <Route path="/Post/:id" compoent={Post} />
-        <Route component={NotFound} />
-      </Switch>
-    </BrowserRouter>
+      <div className="App">
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={() => (
+              <React.Fragment>
+                <AddPostForm />
+                <PostsList />
+              </React.Fragment>
+            )}
+          />
+          <Redirect to="/" />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
