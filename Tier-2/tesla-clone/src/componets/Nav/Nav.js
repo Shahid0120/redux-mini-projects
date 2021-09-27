@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import "./Nav.css";
+//import Button from "@mui/material/Button";
+
 function Nav() {
   return (
     <React.Fragment>
@@ -22,38 +24,47 @@ function Nav() {
         <div className="Nav-middle">
           {/* place holder for ankcho */}
           <a href="www.google.com">
-            <button>Model S</button>
+            <Button variant="text">Model S</Button>
           </a>
           <a href="www.google.com">
-            <button>Model 3</button>
+            <Button variant="contained">Model 3</Button>
           </a>
           <a href="www.google.com">
-            <button>Model X</button>
+            <Button>Model X</Button>
           </a>
           <a href="www.google.com">
-            <button>Model Y</button>
+            <Button>Model Y</Button>
           </a>
           <a href="www.google.com">
-            <button>Solar Roof</button>
+            <Button>Solar Roof</Button>
           </a>
           <a href="www.google.com">
-            <button>Solar Panels</button>
+            <Button>Solar Panels</Button>
           </a>
         </div>
         <div className="Menu">
           <a href="www.google.com">
-            <button>Shop</button>
+            <Button>Shop</Button>
           </a>
           <a href="www.google.com">
-            <button>Account</button>
+            <Button>Account</Button>
           </a>
           <a href="www.google.com">
-            <button>Menu</button>
+            <Button>Menu</Button>
           </a>
         </div>
       </div>
     </React.Fragment>
   );
 }
+
+const Button = styled.button`
+  color: black transparent;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid black transparent;
+  border-radius: 3px;
+`;
 
 export default Nav;
