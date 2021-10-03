@@ -5,6 +5,7 @@ const initialState = {
     { id: number, text: "false" },
     { id: number, text: "true" },
   ],
+  SubmitForm: [{ id: number, username: "hi", password: "poo" }],
 };
 
 function appReducer(state = initialState, action) {
@@ -17,6 +18,19 @@ function appReducer(state = initialState, action) {
           {
             id: number,
             text: action.payload,
+          },
+        ],
+      };
+    }
+    case "SubmitForm": {
+      return {
+        ...state,
+        SubmitForm: [
+          ...state.SubmitForm,
+          {
+            id: number,
+            username: action.payload,
+            password: action.payload,
           },
         ],
       };
