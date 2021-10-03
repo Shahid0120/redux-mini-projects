@@ -1,27 +1,41 @@
 import React from "react";
-import store from "../app/store";
+import axios from "axios";
+import { useState } from "react";
+import { useEffect } from "react";
+var endpoint = "http://ip-api.com/json/?fields=status,message,countryCode";
 
-function Main() {
-    var endpoint = "http://ip-api.com/json/?fields=status,message,countryCode";
-var xhr = newXMLHttpRequest();
-xhr.onreadystatechange = function() {
-	if (this.readyState == 4 && this.status == 200) {
-		var response = JSON.parse(this.responseText);
-		if(response.status !== 'success') {
-			console.log('query failed: ' + response.message);
-			return
-		}
-        if(response.countryCode == "US") {
-			
-		}
-        if(response.countryCode == "AUS") {
-
+export default function Main() {
+  const [language, setLanguage] = useState("US");
+  useEffect(() => {
+    axios
+      .get(
+        "http://ip-api.com/json/{query}?fields=status,message,country,countryCode,region,regionName,city,org,as,query"
+      )
+      .then((response) => {
+        // var response = JSON.parse(response);
+        switch (response.countryCode) {
+          case "CA":
+            setLanguage("Hi");
+            break;
+          case "JP":
+            setLanguage("こんにちは");
+            break;
+          case "DE":
+            setLanguage("Hallo");
+            break;
+          case "SPAN":
+            setLanguage("Hola");
+            break;
+          default:
+            setLanguage("hi");
+            break;
         }
+      });
+  }, []);
+
   return (
     <div>
-      <h1>{console.log(store.getState())}</h1>
+      <h1>{language}</h1>
     </div>
   );
 }
-
-export default Main;
